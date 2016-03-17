@@ -1,5 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 target/
+build/
+.gradle/
 
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
