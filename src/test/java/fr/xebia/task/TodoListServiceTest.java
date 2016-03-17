@@ -1,6 +1,5 @@
 package fr.xebia.task;
 
-
 import org.junit.gen5.api.*;
 
 import java.time.LocalDate;
@@ -19,14 +18,12 @@ public class TodoListServiceTest {
 
     Supplier<String> errorsMessage;
 
-
     @BeforeEach
     public void initTodoList() {
         todoListService = new TodoListService();
         todoList = () -> Arrays.asList(new Task("task1", Task.Priority.NEW), new Task("task2", Task.Priority.PROGRESS), new Task("task3", Task.Priority.COMPLETE));
         errorsMessage = () -> "Test Failed, asserting not null";
     }
-
 
     @Test
     @DisplayName("First case: when changing my list")
@@ -45,7 +42,7 @@ public class TodoListServiceTest {
 
     @Disabled
     @Test
-    @DisplayName("second case: when changing my list and getting  completed collection")
+    @DisplayName("second case: when changing my list and getting  completed collection. Not implemented yet")
     public void
     should_change_an_item_and_get_completed_list() {
         List<Task> resp = todoListService.completeListByPriority(todoList, Task.Priority.NEW);
@@ -74,5 +71,4 @@ public class TodoListServiceTest {
     should_get_delay_exception_when_task_date_under_today() {
         assertThrows(IllegalArgumentException.class, () -> todoListService.getTaskDelayInDays(new Task("task1", Task.Priority.NEW, LocalDate.now().minusDays(1))));
     }
-
 }

@@ -45,5 +45,4 @@ public class MockitoExtension implements InstancePostProcessor, MethodParameterR
     private Object getMock(Class<?> mockType, Store mocks) {
         return mocks.getOrComputeIfAbsent(mockType, type -> mock(mockType));
     }
-
 }

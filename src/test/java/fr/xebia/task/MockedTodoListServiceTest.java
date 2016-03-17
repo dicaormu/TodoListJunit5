@@ -1,8 +1,8 @@
 package fr.xebia.task;
 
-
 import org.junit.gen5.api.BeforeEach;
 import org.junit.gen5.api.DisplayName;
+import org.junit.gen5.api.Nested;
 import org.junit.gen5.api.Test;
 import org.junit.gen5.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,13 +29,11 @@ public class MockedTodoListServiceTest {
     @InjectMocks
     TodoListService todoListService;
 
-
     @BeforeEach
     public void initTodoList() {
         todoListService = new TodoListService();
         when(todoList.get()).thenReturn(asList(new Task("task1", Task.Priority.NEW, LocalDate.now()), new Task("task2", Task.Priority.PROGRESS, LocalDate.now().plusMonths(1)), new Task("task3", Task.Priority.COMPLETE, LocalDate.now().plusMonths(2))));
     }
-
 
     @Test
     @DisplayName("find last task")
@@ -45,6 +43,4 @@ public class MockedTodoListServiceTest {
         assertNotNull(resp);
         assertTrue(resp == 2.0, "longest task must be " + resp);
     }
-
-
 }

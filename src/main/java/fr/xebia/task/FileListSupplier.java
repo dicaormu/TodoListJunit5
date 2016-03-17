@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 
 public class FileListSupplier implements Supplier<List<String>> {
 
-
     Logger logger = LoggerFactory.getLogger(this.getClass());
     private String filename;
 

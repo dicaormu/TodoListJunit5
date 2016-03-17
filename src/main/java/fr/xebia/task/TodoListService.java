@@ -24,6 +24,15 @@ public class TodoListService {
                 .collect(Collectors.toList());
     }
 
+    public void completeListByPriority(List<Task> tasks, Task.Priority priority) {
+        // code qui complete une liste de Tasks
+        for(Task task:tasks){
+            if(task.getPriority().equals(priority)) {
+                task.setPriority(Task.Priority.COMPLETE);
+            }
+        }
+    }
+
     public List<Task> returnCompleteChangedList(Supplier<List<Task>> taskSupplier, Task.Priority priority) {
         return taskSupplier.get()
                 .stream()
@@ -47,8 +56,6 @@ public class TodoListService {
             throw new IllegalArgumentException("Not a valid task");
         Period period = Period.between(LocalDate.now(), task.getDate());
         return ((Long) period.toTotalMonths()).doubleValue() + ((Integer) period.getDays()).doubleValue() / 30;
-
-
     }
 
 }
