@@ -71,4 +71,13 @@ public class TodoListServiceTest {
     should_get_delay_exception_when_task_date_under_today() {
         assertThrows(IllegalArgumentException.class, () -> todoListService.getTaskDelayInDays(new Task("task1", Task.Priority.NEW, LocalDate.now().minusDays(1))));
     }
+
+    @Nested
+    @DisplayName("When changing tasks")
+    class TaskMutator implements IntrTodoListServiceTest {
+        @Override
+        public Task add1MonthToTask(Task newTask) {
+            return new Task(newTask.getName(), newTask.getPriority(), newTask.getDate().plusDays(30));
+        }
+    }
 }
