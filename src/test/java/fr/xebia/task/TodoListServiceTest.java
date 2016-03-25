@@ -66,10 +66,18 @@ public class TodoListServiceTest {
     }
 
     @Test
-    @DisplayName("fourth case: getting task delay if possible")
+    @DisplayName("fourth case: getting task delay when not possible")
     public void
     should_get_delay_exception_when_task_date_under_today() {
-        assertThrows(IllegalArgumentException.class, () -> todoListService.getTaskDelayInDays(new Task("task1", Task.Priority.NEW, LocalDate.now().minusDays(1))));
+        assertThrows(IllegalArgumentException.class, () -> todoListService.getTaskDelayInMonths(new Task("task1", Task.Priority.NEW, LocalDate.now().minusDays(1))));
+    }
+
+    @Test
+    @DisplayName("fourth case: getting task delay if possible")
+    public void
+    should_get_delay_exception_when_task_is_ok() {
+        Task task1=new Task("task1", Task.Priority.NEW, LocalDate.now().plusMonths(1).plusDays(15));
+        assertTrue(todoListService.getTaskDelayInMonths(task1)==1.5,"not equal");
     }
 
     @Nested

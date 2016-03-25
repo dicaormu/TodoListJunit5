@@ -46,16 +46,15 @@ public class TodoListService {
                 .map(Task::getDate)
                 .map(date -> Period.between(LocalDate.now(), date))
                 .max(periodComparator)
-                .map(period -> ((Long) period.toTotalMonths()).doubleValue() + ((Integer) period.getDays()).doubleValue() / 30)
+                .map(period ->  (period.toTotalMonths() + ( period.getDays()) / 30))
                 .get();
-
     }
 
-    public double getTaskDelayInDays(Task task) {
+    public double getTaskDelayInMonths(Task task) {
         if (task.getDate().isBefore(LocalDate.now()))
             throw new IllegalArgumentException("Not a valid task");
         Period period = Period.between(LocalDate.now(), task.getDate());
-        return ((Long) period.toTotalMonths()).doubleValue() + ((Integer) period.getDays()).doubleValue() / 30;
+        return (Double.valueOf(period.getDays()) / 30) + period.toTotalMonths();
     }
 
 }

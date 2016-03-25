@@ -28,7 +28,6 @@ junit5 {
     runJunit4 true
     matchClassName '.*Test'
     reportsDir file('build/test-results/junit5/') // this is the default
-    logManager 'org.apache.logging.log4j.jul.LogManager'
 }
 
 repositories {
@@ -47,8 +46,6 @@ dependencies {
     // If you also want JUnit4 tests
     testCompile("junit:junit:${junit4Version}")
 
-    testRuntime("org.apache.logging.log4j:log4j-core:${log4JVersion}")
-    testRuntime("org.apache.logging.log4j:log4j-jul:${log4JVersion}")
     compile "org.mockito:mockito-core:2.+"
     compile 'javax.jms:javax.jms-api:2.0.1'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'

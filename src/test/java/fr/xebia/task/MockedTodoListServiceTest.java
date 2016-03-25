@@ -18,7 +18,7 @@ import static org.junit.gen5.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 @DisplayName("Testing Todo List Service with mock")
-@ExtendWith(MockitoExtension.class)
+@ExtendWith({MockitoExtension.class,TimedExtension.class})
 public class MockedTodoListServiceTest {
 
     @Mock
